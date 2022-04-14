@@ -1,11 +1,14 @@
+import { getAuth, signOut } from 'firebase/auth';
 import React from 'react';
 import { Button, Container, Nav, Navbar, NavLink } from 'react-bootstrap';
+import { useAuthState } from 'react-firebase-hooks/auth';
 import { LinkContainer } from 'react-router-bootstrap';
-import useFirebase from '../../hooks/useFirebase';
+import firebaseApp from '../../firebase.init';
 
+const auth = getAuth(firebaseApp);
 
 const Header = () => {
-    const { user, handleSignOut } = useFirebase();
+    const [user] = useAuthState(auth);
     return (
         <div>
             <Navbar bg="success" variant='dark' expand="lg">
@@ -36,18 +39,18 @@ const Header = () => {
                                 !user?.displayName && <LinkContainer to='/login'>
                                     <NavLink>Login</NavLink>
                                 </LinkContainer>
-                           }
+                            }
 
                         </Nav>
                         {
-                            user?.displayName && <Navbar.Text className='me-2'>{user?.displayName}</Navbar.Text>
+                            user?.displayName && <Navbar.Text className='me-2 text-dark'>{user?.displayName}</Navbar.Text>
                         }
 
                         {
                             user?.displayName && <img style={{ height: '45px', width: '45px' }} className='rounded-circle me-3' src={user.photoURL} alt="" />
                         }
                         {
-                            user?.uid && <Button className='text-info' onClick={handleSignOut} variant='success'>Log out</Button>
+                            user?.uid && <Button className='text-info' onClick={() => signOut(auth)} variant='success'>Log out</Button>
                         }
                     </Navbar.Collapse>
                 </Container>
