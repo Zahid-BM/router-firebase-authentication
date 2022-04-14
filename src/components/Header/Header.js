@@ -32,6 +32,11 @@ const Header = () => {
                             <LinkContainer to='/orders'>
                                 <NavLink>Orders</NavLink>
                             </LinkContainer>
+                            {
+                                user && <LinkContainer to='/history'>
+                                    <NavLink>History</NavLink>
+                                </LinkContainer>
+                            }
                             <LinkContainer to='/register'>
                                 <NavLink>Register</NavLink>
                             </LinkContainer>
