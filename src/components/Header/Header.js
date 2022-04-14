@@ -32,17 +32,22 @@ const Header = () => {
                             <LinkContainer to='/register'>
                                 <NavLink>Register</NavLink>
                             </LinkContainer>
-                            <LinkContainer to='/login'>
-                                <NavLink>Login</NavLink>
-                            </LinkContainer>
+                            {
+                                !user?.displayName && <LinkContainer to='/login'>
+                                    <NavLink>Login</NavLink>
+                                </LinkContainer>
+                           }
 
                         </Nav>
+                        {
+                            user?.displayName && <Navbar.Text className='me-2'>{user?.displayName}</Navbar.Text>
+                        }
 
                         {
                             user?.displayName && <img style={{ height: '45px', width: '45px' }} className='rounded-circle me-3' src={user.photoURL} alt="" />
                         }
                         {
-                            user?.uid && <Button onClick={handleSignOut} variant='secondary'>Log out</Button>
+                            user?.uid && <Button className='text-info' onClick={handleSignOut} variant='success'>Log out</Button>
                         }
                     </Navbar.Collapse>
                 </Container>

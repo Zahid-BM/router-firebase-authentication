@@ -6,11 +6,11 @@ const Register = () => {
         <Container>
             <h2 className='text-center my-3 text-success'>Please Register</h2>
             <Row className='my-5'>
-                <Col md={8} >
+                <Col lg={8} >
                     <img  className='rounded-3 w-100' src={image} alt="" />
                 </Col>
-                <Col className='my-auto shadow p-4 rounded-3' md={4}>
-                    <Form >
+                <Col className='h-75 shadow p-4 rounded-3' lg={4}>
+                    <Form className='text-start'>
                         <Form.Group className="mb-3" controlId="formBasicEmail">
                             <Form.Label>Email address</Form.Label>
                             <Form.Control type="email" placeholder="Enter email" />
